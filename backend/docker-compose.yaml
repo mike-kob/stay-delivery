@@ -4,7 +4,11 @@ services:
   web:
     build:
       context: .
-      dockerfile:
+      dockerfile: Dockerfile
+    depends_on:
+      - postgres
+    volumes:
+      - .:/project
     env_file:
       - .env
     command: ["sh", "server.sh"]
@@ -15,3 +19,13 @@ services:
     image: postgres:12
     ports:
     - 5432:5432
+    volumes:
+      - local_db:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_HOST_AUTH_METHOD=trust
+      - POSTGRES_PASSWORD=admin
+      - POSTGRES_USER=admin
+      - POSTGRES_DB=deliveries
+
+volumes:
+  local_db:

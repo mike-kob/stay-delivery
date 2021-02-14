@@ -58,8 +58,7 @@ ROOT_URLCONF = 'Deliveries.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'templates']
-        ,
+        'DIRS': [],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -130,3 +129,5 @@ STATIC_URL = '/static/'
 GRAPHENE = {
     "SCHEMA": "delivery.graphql.schema.schema"
 }
+
+FB_SESSION_COOKIE = 'fb_session'
