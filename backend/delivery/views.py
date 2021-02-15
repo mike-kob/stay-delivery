@@ -14,7 +14,7 @@ def login(request):
     try:
         id_token = json.loads(request.body).get('id_token')
 
-        expires_in = timedelta(days=30)
+        expires_in = timedelta(days=14)
         session_cookie = firebase_auth.create_session_cookie(id_token, expires_in=expires_in)
         response = HttpResponse(status=200)
         response.set_cookie(
