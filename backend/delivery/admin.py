@@ -39,6 +39,7 @@ class DishInline(admin.StackedInline):
         "description",
         "weight",
         "price",
+        "photo",
         "photo_img",
         "tags",
     )
@@ -57,7 +58,7 @@ class RestaurantAdmin(admin.ModelAdmin):
         'id',
         'name',
         'description',
-        'photo',
+        'photo_img',
         'admin_email',
     )
     list_select_related = ('administrator',)
@@ -66,6 +67,13 @@ class RestaurantAdmin(admin.ModelAdmin):
 
     def admin_email(self, obj):
         return obj.administrator.email
+
+    def photo_img(self, obj):
+        return format_html(
+            f'<a href="{obj.photo}" target="_blank">'
+            f'<img src="{obj.photo}" width="400px">'
+            f"</a>"
+        )
 
 
 class TagAdmin(admin.ModelAdmin):
