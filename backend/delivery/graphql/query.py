@@ -9,7 +9,7 @@ class Query(graphene.ObjectType):
 
     tags = graphene.List(types.TagType)
 
-    dishes = graphene.List(types.DishType)
+    dishes = graphene.List(types.DishType, tag=graphene.ID())
     dish = graphene.Field(types.DishType, id=graphene.Int(required=True))
 
     restaurants = graphene.List(types.RestaurantType)
@@ -26,8 +26,11 @@ class Query(graphene.ObjectType):
     def resolve_tags(self, info):
         return Tag.objects.all()
 
-    def resolve_dishes(self, info):
-        return Dish.objects.all()
+    def resolve_dishes(self, info, tag=None):
+        qs = Dish.objects.all()
+        if tag:
+            qs = qs.filter(tags__id=tag)
+        return qs
 
     def resolve_dish(self, id):
         return Dish.objects.filter(id=id).first()
