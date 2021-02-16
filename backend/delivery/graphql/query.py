@@ -1,11 +1,13 @@
 import graphene
 
 from delivery.graphql import types
-from delivery.models import Dish, Restaurant
+from delivery.models import Dish, Restaurant, Tag
 
 
 class Query(graphene.ObjectType):
     me = graphene.Field(types.UserType)
+
+    tags = graphene.List(types.TagType)
 
     dishes = graphene.List(types.DishType)
     dish = graphene.Field(types.DishType, id=graphene.Int(required=True))
@@ -20,6 +22,9 @@ class Query(graphene.ObjectType):
             return info.context.user
 
         return None
+
+    def resolve_tags(self, info):
+        return Tag.objects.all()
 
     def resolve_dishes(self, info):
         return Dish.objects.all()
