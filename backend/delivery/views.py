@@ -60,8 +60,8 @@ def restaurant_signup(request):
         user = create_user(decoded_token)
         Restaurant.objects.create(
             administrator=user,
-            name=request.POST['name'],
-            description=request.POST['description'],
+            name=data['name'],
+            description=data['description'],
         )
         return provide_session_cookie(id_token)
     except json.JSONDecodeError:

@@ -5,7 +5,7 @@ from django.db import models
 
 
 class Client(models.Model):
-    user = models.ForeignKey(
+    user = models.OneToOneField(
         User,
         on_delete=models.PROTECT,
         related_name='client',
@@ -29,13 +29,13 @@ class Courier(models.Model):
 
 class Restaurant(models.Model):
     name = models.CharField(max_length=64)
-    description = models.CharField(max_length=500)
+    description = models.TextField(max_length=500)
     photo = models.CharField(max_length=500, blank=True, null=True)
 
-    administrator = models.ForeignKey(
+    administrator = models.OneToOneField(
         User,
         on_delete=models.PROTECT,
-        related_name='administrator',
+        related_name='restaurant',
         null=False, blank=False,
     )
 
@@ -54,10 +54,13 @@ class Location(models.Model):
 class Tag(models.Model):
     name = models.CharField(max_length=64, null=False, blank=False)
 
+    def __str__(self):
+        return f"{self.id}: name {self.name}"
+
 
 class Dish(models.Model):
     name = models.CharField(max_length=64)
-    description = models.CharField(max_length=64, null=True, blank=True)
+    description = models.TextField(null=True, blank=True)
     weight = models.IntegerField(null=True, blank=True)
     price = models.DecimalField(decimal_places=2, max_digits=7)
     photo = models.CharField(max_length=500, blank=True, null=True)
@@ -76,6 +79,7 @@ class Order(models.Model):
     date = models.DateTimeField(default=datetime.now, blank=True)
     payment = models.BooleanField(default=False)
     courier = models.ForeignKey(Courier, on_delete=models.CASCADE, related_name="orders", default=1)
+    restaurant = models.ForeignKey(Restaurant, on_delete=models.CASCADE, related_name='orders')
     client = models.ForeignKey(Client, on_delete=models.CASCADE, related_name="orders")
 
     def __str__(self):
