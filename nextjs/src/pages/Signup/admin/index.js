@@ -5,16 +5,19 @@ import {
 } from 'react-bootstrap';
 
 import styles from './Admin.module.css';
-import {clientSignupWithEmail} from '@/auth/actions';
+import {adminSignupWithEmail} from '@/auth/actions';
+import {useRouter} from 'next/router';
 
 const AdminSignup = () => {
+  const router = useRouter();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   const onSignup = async () => {
     console.log('STARTED');
-    // await clientSignupWithEmail(email, password);
+    await adminSignupWithEmail(email, password);
     console.log('ENDED');
+    await router.push('/');
   };
 
   return (

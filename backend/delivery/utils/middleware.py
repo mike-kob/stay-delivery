@@ -11,11 +11,17 @@ class FirebaseAuthentication(MiddlewareMixin):
         self.get_response = get_response
 
     def process_request(self, request):
+        if request.path.startswith('/signup'):
+            return
+
         session_cookie = request.COOKIES.get(settings.FB_SESSION_COOKIE)
         try:
             decoded_claims = firebase_auth.verify_session_cookie(session_cookie, check_revoked=True)
             user = User.objects.get(username=decoded_claims['uid'])
             setattr(request, 'user', user)
+        except ValueError:
+            # Session cookie is invalid, expired or revoked. Force user to login.
+            pass
         except firebase_auth.InvalidSessionCookieError:
             # Session cookie is invalid, expired or revoked. Force user to login.
             pass
