@@ -48,7 +48,7 @@ class DishInline(admin.StackedInline):
     def photo_img(self, obj):
         return format_html(
             f'<a href="{obj.photo}" target="_blank">'
-            f'<img src="{obj.photo}" width="400px">'
+            f'<img src="{obj.photo}" width="300px">'
             f"</a>"
         )
 
@@ -71,7 +71,7 @@ class RestaurantAdmin(admin.ModelAdmin):
     def photo_img(self, obj):
         return format_html(
             f'<a href="{obj.photo}" target="_blank">'
-            f'<img src="{obj.photo}" width="400px">'
+            f'<img src="{obj.photo}" width="100px">'
             f"</a>"
         )
 
