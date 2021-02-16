@@ -1,20 +1,30 @@
-import React from 'react';
-import Cookies from 'js-cookie';
+import React, {useEffect, useState} from 'react';
 
-import styles from './Home.module.css';
 import CatalogLayout from '@/components/CatalogLayout';
 import CategoryCarousel from '@/components/CategoryCarousel';
-
-//TODO remove hardcoded categories
+import ItemsGrid from '@/components/ItemsGrid';
+import {clientGraphql} from '@/graphql';
+import {GET_DISHES_QUERY} from '@/graphql/dish';
 
 const Home = () => {
+  const [category, setCategory] = useState(null);
+  const [items, setItems] = useState([]);
+
+  useEffect(() => {
+    (async function() {
+      const {data} = await clientGraphql(GET_DISHES_QUERY, {tag: category?.id});
+      setItems(data?.dishes);
+    })();
+  }, [category]);
+
   return (
     <CatalogLayout>
       <div>
-         Stay with your family. 
+         Stay with your family.
         Don’t spend time going to market.
       </div>
-      <CategoryCarousel categories={[ {name: "Pizza"}, {name: "Desserts"}  ]} />
+      <CategoryCarousel category={category} setCategory={setCategory} />
+      <ItemsGrid items={items} />
     </CatalogLayout>
   );
 };

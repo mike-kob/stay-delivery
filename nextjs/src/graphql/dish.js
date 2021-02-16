@@ -102,3 +102,17 @@ mutation(
   }
 }
 `;
+
+export const GET_DISHES_QUERY = `
+query ($tag: ID) {
+  dishes (tag: $tag) {
+    id
+    name
+    price
+    restaurant {
+      id
+      name
+    }
+  }
+}
+`;
