@@ -20,6 +20,8 @@
     ],
     "rules": {
         "require-jsdoc": "off",
-        "react/no-unescaped-entities": "off"
+        "react/no-unescaped-entities": "off",
+        "react/prop-types": "off",
+        "linebreak-style": "off"
     }
 }

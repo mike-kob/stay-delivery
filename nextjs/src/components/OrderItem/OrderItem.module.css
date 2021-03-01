@@ -1,0 +1,49 @@
+
+.imageBackground {
+  background: #503E9D;
+  border-radius: 27px;
+  width: 100%;
+  min-width: 72px;
+  min-height: 72px;
+  position: relative;
+}
+
+.image {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  width: 80%;
+  height: 80%;
+}
+
+.remove {
+  background: #EFECFF;
+  border-radius: 60px;
+  border: 1px solid #EFECFF;
+  color: #503E9D;
+}
+
+.remove:hover {
+  background: #503E9D;
+  color: #EFECFF;
+  border: 1px solid #503E9D;
+}
+
+.btnSign {
+  border: none;
+  background-color: inherit;
+  cursor: pointer;
+  display: inline-block;
+}
+
+.btnSign:hover { 
+  background: #EFECFF;
+  border-radius: 25px;
+}
+
+.itemBlock {
+  margin-top: 5px;
+}

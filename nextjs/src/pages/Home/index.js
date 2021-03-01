@@ -1,29 +1,31 @@
-import React from 'react';
-import Cookies from 'js-cookie';
+import React, {useEffect, useState} from 'react';
 
-import styles from './Home.module.css';
-import {Button} from 'react-bootstrap';
+import CatalogLayout from '@/components/CatalogLayout';
+import CategoryCarousel from '@/components/CategoryCarousel';
+import ItemsGrid from '@/components/ItemsGrid';
+import {clientGraphql} from '@/graphql';
+import {GET_DISHES_QUERY} from '@/graphql/dish';
 
 const Home = () => {
+  const [category, setCategory] = useState(null);
+  const [items, setItems] = useState([]);
+
+  useEffect(() => {
+    (async function() {
+      const {data} = await clientGraphql(GET_DISHES_QUERY, {tag: category?.id});
+      setItems(data?.dishes);
+    })();
+  }, [category]);
+
   return (
-    <div className={styles.main}>
-      This is home page<br/>
-      {!Cookies.get('fb_session') ?
-        <>
-          <a href='/login'>Login</a> <br/>
-          <a href='/signup/client'>Signup as client</a><br/>
-          <a href='/signup/restaurant'>Signup as restaurant</a><br/>
-        </> :
-        <>
-          <div>Logged in</div>
-          <Button onClick={() => {
-            Cookies.remove('fb_session');
-            window.location.reload();
-          }}>
-            Log out
-          </Button>
-        </>}
-    </div>
+    <CatalogLayout>
+      <div>
+         Stay with your family.
+        Don’t spend time going to market.
+      </div>
+      <CategoryCarousel category={category} setCategory={setCategory} />
+      <ItemsGrid items={items} />
+    </CatalogLayout>
   );
 };
 
