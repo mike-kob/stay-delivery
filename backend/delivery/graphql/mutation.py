@@ -102,23 +102,50 @@ class CreateOrderMutation(graphene.Mutation):
 
     def mutate(self, info, data):
         user = info.context.user
-        if not user.is_authenticated or hasattr(user, 'client'):
-            return CreateOrderMutation(ok=False, errors='Not authed')
+        if not user.is_authenticated or not hasattr(user, 'client'):
+            return CreateOrderMutation(ok=False, errors='Ви не авторизовані')
 
         order = Order.objects.create(
             notes=data['notes'],
             date=timezone.now(),
             client=user.client,
-            restaurant=data['restaurant']
+            restaurant_id=data['restaurant']
         )
         for dishOrderData in data.get('dish_orders', []):
             DishOrder.objects.create(
                 order=order,
-                dish=dishOrderData['dish'],
-                restaurant=data['restaurant']
+                dish_id=dishOrderData['dish'],
+                amount=dishOrderData['amount'],
             )
 
         return CreateOrderMutation(ok=True, order=order)
+
+
+class UpdateClientMutation(graphene.Mutation):
+    class Arguments:
+        data = inputs.ClientInput(required=True)
+
+    ok = graphene.Boolean(required=True)
+    errors = graphene.String(required=False)
+    client = graphene.Field(types.ClientType, required=False)
+
+    def mutate(self, info, data):
+        user = info.context.user
+        if not user.is_authenticated or not hasattr(user, 'client'):
+            return UpdateClientMutation(ok=False, errors='Ви не авторизовані')
+        client = user.client
+        if data.phone:
+            client.phone = data.phone
+        if data.name:
+            client.name = data.name
+        if data.card:
+            client.card_number = data.card
+        if data.address:
+            client.address = data.address
+        client.full_clean()
+        client.save()
+
+        return UpdateClientMutation(ok=True, client=client)
 
 
 class Mutation(graphene.ObjectType):
@@ -126,5 +153,6 @@ class Mutation(graphene.ObjectType):
     create_dish = CreateDishMutation.Field()
     update_dish = UpdateDishMutation.Field()
     update_restaurant = UpdateRestaurantMutation.Field()
+    update_client = UpdateClientMutation.Field()
 
     create_order = CreateOrderMutation.Field()
