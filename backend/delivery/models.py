@@ -11,8 +11,9 @@ class Client(models.Model):
         related_name='client',
         null=False, blank=False,
     )
-    phone = models.CharField(max_length=20, null=False, blank=False)
-    address = models.CharField(max_length=200, null=False, blank=False)
+    name = models.CharField(max_length=100, null=True, blank=True)
+    phone = models.CharField(max_length=20, null=True, blank=True)
+    address = models.CharField(max_length=200, null=True, blank=True)
 
     card_number = models.CharField(max_length=30, null=True, blank=True)
     photo = models.CharField(max_length=500, blank=True, null=True)
