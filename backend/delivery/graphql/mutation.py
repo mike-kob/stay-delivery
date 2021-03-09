@@ -114,8 +114,8 @@ class CreateOrderMutation(graphene.Mutation):
         for dishOrderData in data.get('dish_orders', []):
             DishOrder.objects.create(
                 order=order,
-                dish=dishOrderData['dish'],
-                restaurant=data['restaurant']
+                dish_id=dishOrderData['dish'],
+                restaurant_id=data['restaurant']
             )
 
         return CreateOrderMutation(ok=True, order=order)
