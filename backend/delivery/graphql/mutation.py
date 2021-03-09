@@ -102,8 +102,8 @@ class CreateOrderMutation(graphene.Mutation):
 
     def mutate(self, info, data):
         user = info.context.user
-        if not user.is_authenticated or hasattr(user, 'client'):
-            return CreateOrderMutation(ok=False, errors='Not authed')
+        if not user.is_authenticated or not hasattr(user, 'client'):
+            return CreateOrderMutation(ok=False, errors='Ви не авторизовані')
 
         order = Order.objects.create(
             notes=data['notes'],
