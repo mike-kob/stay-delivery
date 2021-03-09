@@ -28,5 +28,6 @@ class OrderInput(graphene.InputObjectType):
 
 class ClientInput(graphene.InputObjectType):
     phone = graphene.String()
+    name = graphene.String()
     address = graphene.String()
     card = graphene.String()

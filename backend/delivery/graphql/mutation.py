@@ -136,6 +136,8 @@ class UpdateClientMutation(graphene.Mutation):
         client = user.client
         if data.phone:
             client.phone = data.phone
+        if data.name:
+            client.name = data.name
         if data.card:
             client.card_number = data.card
         if data.address:
