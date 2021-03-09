@@ -74,12 +74,12 @@ class Dish(models.Model):
 
 
 class Order(models.Model):
-    notes = models.CharField(max_length=64)
+    notes = models.CharField(max_length=64, null=True, blank=True)
     paid = models.BooleanField(default=False)
     delivered = models.BooleanField(default=False)
     date = models.DateTimeField(default=datetime.now, blank=True)
     payment = models.BooleanField(default=False)
-    courier = models.ForeignKey(Courier, on_delete=models.CASCADE, related_name="orders", default=1)
+    courier = models.ForeignKey(Courier, null=True, blank=False, on_delete=models.CASCADE, related_name="orders")
     restaurant = models.ForeignKey(Restaurant, on_delete=models.CASCADE, related_name='orders')
     client = models.ForeignKey(Client, on_delete=models.CASCADE, related_name="orders")
 
