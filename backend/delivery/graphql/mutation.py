@@ -127,11 +127,12 @@ class UpdateClientMutation(graphene.Mutation):
 
     ok = graphene.Boolean(required=True)
     errors = graphene.String(required=False)
+    client = types.ClientType(required=False)
 
     def mutate(self, info, data):
         user = info.context.user
         if not user.is_authenticated or not hasattr(user, 'client'):
-            return CreateOrderMutation(ok=False, errors='Ви не авторизовані')
+            return UpdateClientMutation(ok=False, errors='Ви не авторизовані')
         client = user.client
         if data.phone:
             client.phone = data.phone
@@ -142,7 +143,7 @@ class UpdateClientMutation(graphene.Mutation):
         client.full_clean()
         client.save()
 
-        return CreateOrderMutation(ok=True)
+        return UpdateClientMutation(ok=True, client=client)
 
 
 class Mutation(graphene.ObjectType):
