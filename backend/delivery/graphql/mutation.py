@@ -109,7 +109,7 @@ class CreateOrderMutation(graphene.Mutation):
             notes=data['notes'],
             date=timezone.now(),
             client=user.client,
-            restaurant=data['restaurant']
+            restaurant_id=data['restaurant']
         )
         for dishOrderData in data.get('dish_orders', []):
             DishOrder.objects.create(
