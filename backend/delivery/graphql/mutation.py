@@ -121,10 +121,35 @@ class CreateOrderMutation(graphene.Mutation):
         return CreateOrderMutation(ok=True, order=order)
 
 
+class UpdateClientMutation(graphene.Mutation):
+    class Arguments:
+        data = inputs.ClientInput(required=True)
+
+    ok = graphene.Boolean(required=True)
+    errors = graphene.String(required=False)
+
+    def mutate(self, info, data):
+        user = info.context.user
+        if not user.is_authenticated or not hasattr(user, 'client'):
+            return CreateOrderMutation(ok=False, errors='Ви не авторизовані')
+        client = user.client
+        if data.phone:
+            client.phone = data.phone
+        if data.card:
+            client.card_number = data.card
+        if data.address:
+            client.address = data.address
+        client.full_clean()
+        client.save()
+
+        return CreateOrderMutation(ok=True)
+
+
 class Mutation(graphene.ObjectType):
 
     create_dish = CreateDishMutation.Field()
     update_dish = UpdateDishMutation.Field()
     update_restaurant = UpdateRestaurantMutation.Field()
+    update_client = UpdateClientMutation.Field()
 
     create_order = CreateOrderMutation.Field()
