@@ -12,6 +12,7 @@ class ClientType(DjangoObjectType):
             'user',
             'phone',
             'address',
+            'card_number',
             'photo',
         )
 
