@@ -127,7 +127,7 @@ class UpdateClientMutation(graphene.Mutation):
 
     ok = graphene.Boolean(required=True)
     errors = graphene.String(required=False)
-    client = types.ClientType(required=False)
+    client = graphene.Field(types.ClientType, required=False)
 
     def mutate(self, info, data):
         user = info.context.user
