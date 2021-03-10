@@ -3,69 +3,32 @@
   height: 100%;
 }
 
-.violet, .gray:hover {
-  background: #503E9D;
-  border-radius: 60px;
-  border: 1px solid #503E9D;
-  font-size: 15px;
-  color: white;
+.address {
+  text-decoration: none;
+  color: inherit;
+  font-weight: bold;
 }
 
-.gray, .violet:hover {
-  border: 1px solid #503E9D;
-  border-radius: 60px;
-  background: inherit;
-  color: #503E9D;
-  font-size: 15px;
+.address:hover { 
+  color: inherit;
+  cursor: pointer;
 }
 
 .buttons {
   display: flex;
-  justify-content: flex-end;
   height: 10%;
+  align-items: center;
 }
 
-.buttons button {
-  margin-right: 15px;
-  height: 40px;
-}
-
-.header {
-  font-size: 20px;
-}
-
-.itemsBlock {
-  height: 50%;
-  display: flex;
-  flex-direction: column;
-}
-
-.scrollBlock {
-  margin-top: 15px;
-  margin-bottom: 15px;
-  width: 100%; 
-  overflow-y: scroll;
-  overflow-x: hidden;
-}
-
-.payment {
-  display: flex;
+.spaceBetween {
   justify-content: space-between;
 }
 
-.orderInfo {
-  height: 40%;
+.end {
+  justify-content: flex-end;
 }
 
-.edit {
-  background: #EFECFF;
-  border-radius: 60px;
-  border: 1px solid #EFECFF;
-  color: #503E9D;
-  text-align: center;
-}
-
-.orderBtn {
-  width: 100%;
+.buttons button {
+  margin-left: 15px;
   height: 40px;
 }
