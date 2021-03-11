@@ -35,7 +35,6 @@ class LocationType(DjangoObjectType):
         fields = (
             'id',
             'address',
-            'restaurant',
         )
 
 
