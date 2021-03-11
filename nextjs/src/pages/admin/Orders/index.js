@@ -1,10 +1,22 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 
 import styles from './Orders.module.css';
 
 import OrdersContainer from "@/pages/admin/OrdersContainer";
+import {clientGraphql} from "@/graphql";
+import {GET_ORDERS_QUERY, GET_RESTAURANT_QUERY} from "@/graphql/rastaurant";
 
 const Orders = () => {
+    const [orders, setOrders] = useState([]);
+
+    useEffect(() => {
+        (async function() {
+
+            const {data} = await clientGraphql(GET_ORDERS_QUERY);
+            setOrders(data.orders);
+        })();
+    }, []);
+
   return (
     <div className={styles.main}>
         <div className="row justify-content-center">
@@ -18,7 +30,7 @@ const Orders = () => {
                     Menu
                 </a>
         </div>
-        <OrdersContainer/>
+        <OrdersContainer orders={orders}/>
         </div>
   );
 };

@@ -4,6 +4,7 @@
 
 .main {
     padding: 60px;
+    background: #F9F7FA;
 }
 
 .form_area {
@@ -14,7 +15,7 @@
     align-items: center;
     padding: 20px 0px 20px 30px;
     margin: 20px 0px;
-    border: 1px solid #E3E1E6;
+    border: 0px solid #E3E1E6;
     border-radius: 25px;
     font-size: 20px;
     height: 60px;
@@ -64,6 +65,19 @@
 .muted_nav_item:hover {
     color: #8E8F98;
     text-decoration: none;
+
+}
+
+.fill {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden
+}
+.fill img {
+    flex-shrink: 0;
+    min-width: 100%;
+    min-height: 100%;
 
 }
 

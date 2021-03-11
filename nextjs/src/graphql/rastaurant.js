@@ -29,3 +29,33 @@ export const GET_RESTAURANT_QUERY = `
     }
   }
 }`;
+
+export const GET_ORDERS_QUERY = `
+    query {
+    orders {
+        id
+        client {
+            name
+            phone
+        }
+        orderInDishorder {
+            dish {
+                name
+                price
+            }
+            amount
+        }
+    }
+}`
+
+export const GET_DISHES_QUERY = `
+query {
+  restaurant(id: $id) {
+    dishes {
+      name
+    }
+  }
+}`
+
+
+
