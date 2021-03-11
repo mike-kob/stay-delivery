@@ -43,7 +43,7 @@ class Query(graphene.ObjectType):
 
     def resolve_orders(self, info):
         user = info.context.user
-        if not user.is_authenticated or not hasattr(user.restaurant):
+        if not user.is_authenticated or not hasattr(user, 'restaurant'):
             return []
 
         return user.restaurant.orders
