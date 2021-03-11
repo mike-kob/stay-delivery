@@ -46,4 +46,4 @@ class Query(graphene.ObjectType):
         if not user.is_authenticated or not hasattr(user, 'restaurant'):
             return []
 
-        return user.restaurant.orders
+        return user.restaurant.orders.all()
