@@ -71,13 +71,10 @@ class UpdateRestaurantMutation(graphene.Mutation):
 
     def mutate(self, info, data):
         user = info.context.user
-        if not user.is_authenticated or hasattr(user, 'restaurant'):
-            return UpdateRestaurantMutation(ok=False, errors='Not authed')
+        if not user.is_authenticated or not hasattr(user, 'restaurant'):
+            return UpdateRestaurantMutation(ok=False, errors='Ви не авторизовані')
 
-        try:
-            restaurant = Restaurant.objects.get(id=user.restaurant.id)
-        except Dish.DoesNotExist:
-            return UpdateRestaurantMutation(ok=False, errors='Not found')
+        restaurant = user.restaurant
 
         for k, v in data.items():
             if v is not None:
