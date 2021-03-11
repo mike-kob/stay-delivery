@@ -102,7 +102,7 @@ class AddLocationMutation(graphene.Mutation):
         if not user.is_authenticated or not hasattr(user, 'restaurant'):
             return AddLocationMutation(ok=False, errors='Ви не авторизовані')
 
-        loc = Location.objects.create(address=address, restarant=user.restaurant)
+        loc = Location.objects.create(address=address, restaurant=user.restaurant)
 
         return AddLocationMutation(ok=True, location=loc)
 
@@ -119,7 +119,7 @@ class RemoveLocationMutation(graphene.Mutation):
         if not user.is_authenticated or not hasattr(user, 'restaurant'):
             return RemoveLocationMutation(ok=False, errors='Ви не авторизовані')
 
-        Location.objects.filter(id=id, restarant=user.restaurant).delete()
+        Location.objects.filter(id=id, restaurant=user.restaurant).delete()
 
         return RemoveLocationMutation(ok=True)
 
