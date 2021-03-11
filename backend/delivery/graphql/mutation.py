@@ -69,7 +69,7 @@ class UpdateRestaurantMutation(graphene.Mutation):
     errors = graphene.String(required=False)
     restaurant = graphene.Field(types.RestaurantType)
 
-    def mutate(self, info, id, data):
+    def mutate(self, info, data):
         user = info.context.user
         if not user.is_authenticated or hasattr(user, 'restaurant'):
             return UpdateRestaurantMutation(ok=False, errors='Not authed')
