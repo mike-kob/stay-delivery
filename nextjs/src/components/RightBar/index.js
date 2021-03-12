@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import Cookies from 'js-cookie';
 import clsx from 'clsx';
+import {useRouter} from 'next/router';
 
 import {clientGraphql} from '@/graphql';
 import styles from './RightBar.module.css';
@@ -10,6 +11,7 @@ import {GET_USER_QUERY, UPDATE_USER_MUTATION} from '@/graphql/user';
 
 
 const RightBar = () => {
+  const router = useRouter();
   const isAuth = Cookies.get('fb_session');
   const [isProfile, setIsProfile] = useState(false);
   const [client, setClient] = useState(null);

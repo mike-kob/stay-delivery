@@ -13,19 +13,19 @@ const UserForm = ({close, client, updateClient}) => {
         </button>
       </div>
       <FormInput className={styles.input} name="Name"
-        value={client.name}
+        value={client?.name}
         update={(name) => updateClient({name: name})}
       />
       <FormInput className={styles.input} name="Email"
-        value={client.user.email} />
+        value={client?.user?.email} />
       <FormInput className={styles.input} name="Phone: +38(093)111-11-11"
-        value={client.phone}
+        value={client?.phone}
         update={(phone) => updateClient({phone: phone})} />
       <FormInput className={styles.input} name="Street, house"
-        value={client.address}
+        value={client?.address}
         update={(address) => updateClient({address: address})} />
       <FormInput className={styles.input} name="Card: 0000-0000-0000-0000"
-        value={client.cardNumber}
+        value={client?.cardNumber}
         update={(card) => updateClient({card: card})} />
     </div>
   );
