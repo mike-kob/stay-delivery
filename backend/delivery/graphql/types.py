@@ -10,8 +10,10 @@ class ClientType(DjangoObjectType):
         fields = (
             'id',
             'user',
+            'name',
             'phone',
             'address',
+            'card_number',
             'photo',
         )
 
@@ -33,7 +35,6 @@ class LocationType(DjangoObjectType):
         fields = (
             'id',
             'address',
-            'restaurant',
         )
 
 
@@ -107,10 +108,7 @@ class UserType(DjangoObjectType):
         model = User
         fields = (
             'id',
-            'username',
-            'first_name',
             'email',
             'client',
             'restaurant',
-            'tags',
         )

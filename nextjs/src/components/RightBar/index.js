@@ -1,68 +1,77 @@
-import React, { useState, useEffect } from 'react';
+import React, {useState, useEffect} from 'react';
 import Cookies from 'js-cookie';
+import clsx from 'clsx';
 
+import {clientGraphql} from '@/graphql';
 import styles from './RightBar.module.css';
-import { useRouter } from 'next/router';
-import OrderItem from '../OrderItem';
-import { setCart, getCart } from '../../utils/cart';
-import { Button } from 'react-bootstrap';
+import OrderForm from '../OrderForm';
+import UserForm from '../UserForm';
+import {GET_USER_QUERY, UPDATE_USER_MUTATION} from '@/graphql/user';
+
 
 const RightBar = () => {
-  const [items, setItems] = useState([]);
-  const router = useRouter();
+  const isAuth = Cookies.get('fb_session');
+  const [isProfile, setIsProfile] = useState(false);
+  const [client, setClient] = useState(null);
+
+  const updateClient = (newValue) => {
+    (async function() {
+      const {data} = await clientGraphql(UPDATE_USER_MUTATION, newValue);
+      setClient(data?.updateClient.client);
+    })();
+  };
 
   useEffect(() => {
-    setItems(getCart());
+    (async function() {
+      if (isAuth) {
+        const {data} = await clientGraphql(GET_USER_QUERY);
+        setClient(data?.me.client);
+      }
+    })();
   }, []);
 
-  const handleChange = (id, newQuantity) => {
-    if(newQuantity <= 0) 
-      return; 
-
-    const newItems = items.map(item => item.id !== id ? item : 
-      { ...item, quantity: newQuantity });
-
-    setItems(newItems);
-    setCart(newItems);
-  };
-
-  const handleRemove = (id) => {
-    const newItems = items.filter(item => item.id !== id);
-    setItems(newItems);
-    setCart(newItems);
-  };
-  
   return (
     <div className={styles.bar}>
-      {!Cookies.get('fb_session') ?
-        <div className={styles.buttons}>
-          <Button onClick={() => router.push('/signup/client')} className={styles.violet}>Sign up</Button>
-          <Button onClick={() => router.push('/login')} className={styles.gray}>Sign in</Button>
+      { !isAuth ?
+        <div className={clsx(styles.buttons, styles.end)}>
+          <button
+            onClick={() => router.push('/signup/client')}
+            className='orange'>
+            Sign up
+          </button>
+          <button
+            onClick={() => router.push('/login')}
+            className='lightOrange'>
+            Sign in
+          </button
+          >
+        </div> :
+        <div className={clsx(styles.buttons, styles.spaceBetween)}>
+          <a
+            className={styles.address}
+            onClick={() => setIsProfile(true)}
+            style={{visibility: !isProfile ? 'visible' : 'hidden'}}>
+            {client?.address}
+          </a>
+          <button
+            className='orange'
+            onClick={() => setIsProfile(true)}>
+            <i className="fa fa-user"></i>
+          </button>
         </div>
-        :
-        <div>Address</div>
       }
 
-      <div className={styles.itemsBlock}>
-        <div className={styles.header}>My Order</div>
-        <div className={styles.scrollBlock}>
-          {
-            items.length !== 0 ? items.map(item => (
-              <OrderItem item={item} handleRemove={handleRemove} handleChange={handleChange} />
-            )) :
-            <div>You haven’t picked up anything yet.</div>
-          }
-        </div>
-      </div>
-
-      <div className={styles.orderInfo}>
-          <div className={styles.header}>Payment</div>
-          <div className={styles.payment}>
-            <div>... 0000</div>
-            <button className={styles.edit}>Edit</button>
-          </div>
-          <div className={`${styles.header} mt-5`}>Total: 100$</div>
-          <button className={`${styles.violet} mt-2 ${styles.orderBtn}`}>Order</button>
+      <div style={{height: '90%'}}>
+        {
+          isProfile ?
+            <UserForm
+              updateClient={updateClient}
+              client={client}
+              close={() => setIsProfile(false)} /> :
+            <OrderForm
+              client={client}
+              redirectToProfile={() => setIsProfile(true)} />
+        }
       </div>
     </div>
   );

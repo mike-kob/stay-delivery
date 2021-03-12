@@ -1,0 +1,16 @@
+
+.closeHeader {
+  display: flex;
+  flex-wrap: unwrap;
+  justify-content: space-between;
+}
+
+.closeButton {
+    background: inherit;
+    border-radius: 40px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: #F9F9F9;
+    font-size: 15px;
+    min-width: 40px;
+}

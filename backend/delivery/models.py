@@ -11,8 +11,9 @@ class Client(models.Model):
         related_name='client',
         null=False, blank=False,
     )
-    phone = models.CharField(max_length=20, null=False, blank=False)
-    address = models.CharField(max_length=200, null=False, blank=False)
+    name = models.CharField(max_length=100, null=True, blank=True)
+    phone = models.CharField(max_length=20, null=True, blank=True)
+    address = models.CharField(max_length=200, null=True, blank=True)
 
     card_number = models.CharField(max_length=30, null=True, blank=True)
     photo = models.CharField(max_length=500, blank=True, null=True)
@@ -73,12 +74,12 @@ class Dish(models.Model):
 
 
 class Order(models.Model):
-    notes = models.CharField(max_length=64)
+    notes = models.CharField(max_length=64, null=True, blank=True)
     paid = models.BooleanField(default=False)
     delivered = models.BooleanField(default=False)
     date = models.DateTimeField(default=datetime.now, blank=True)
     payment = models.BooleanField(default=False)
-    courier = models.ForeignKey(Courier, on_delete=models.CASCADE, related_name="orders", default=1)
+    courier = models.ForeignKey(Courier, null=True, blank=False, on_delete=models.CASCADE, related_name="orders")
     restaurant = models.ForeignKey(Restaurant, on_delete=models.CASCADE, related_name='orders')
     client = models.ForeignKey(Client, on_delete=models.CASCADE, related_name="orders")
 
