@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.utils.html import format_html
 
-from delivery.models import Client, Restaurant, Location, Dish, Tag
+from delivery.models import Client, Restaurant, Location, Dish, Tag, Order, Courier
 
 
 class ClientAdmin(admin.ModelAdmin):
@@ -83,6 +83,24 @@ class TagAdmin(admin.ModelAdmin):
     )
 
 
+class CourierAdmin(admin.ModelAdmin):
+    pass
+
+
+class OrderAdmin(admin.ModelAdmin):
+    list_filter = ('date',)
+
+    list_display = (
+        'client',
+        'restaurant',
+        'date',
+        'payment',
+        'delivered',
+    )
+
+
 admin.site.register(Tag, TagAdmin)
 admin.site.register(Client, ClientAdmin)
 admin.site.register(Restaurant, RestaurantAdmin)
+admin.site.register(Order, OrderAdmin)
+admin.site.register(Courier, CourierAdmin)
