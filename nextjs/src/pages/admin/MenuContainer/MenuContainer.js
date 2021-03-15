@@ -1,11 +1,12 @@
 import MenuItem from "@/pages/admin/MenuItem/MenuItem";
-import styles from "./MenuCategoryCard.module.css"
+import styles from "./MenuContainer.module.css"
 import {Button} from "react-bootstrap";
-const MenuCategoryCard = () => {
+const MenuContainer = () => {
     return (
         <div className={styles.main}>
-            <p>Pizzas</p>
+            <p>Menu</p>
             <div className={styles.items_list}>
+                <MenuItem/>
                 <MenuItem/>
                 <MenuItem/>
             </div>
@@ -14,4 +15,4 @@ const MenuCategoryCard = () => {
     )
 }
 
-export default MenuCategoryCard;
+export default MenuContainer;

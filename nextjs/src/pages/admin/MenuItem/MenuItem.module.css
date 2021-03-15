@@ -4,8 +4,7 @@
     justify-content: space-between;
     align-items: center;
     padding: 16px;
-    width: 600px;
-    height: 100px;
+    width: 750px;
     border-radius: 20px;
     background: #FFFFFF;
     margin: 10px 0;
@@ -68,4 +67,10 @@
 .instrument_area {
     display: flex;
     flex-direction: row;
+}
+
+.tagPanel {
+    display: flex;
+    flex-direction: row;
+    margin: 20px 0px 0px 0px;
 }

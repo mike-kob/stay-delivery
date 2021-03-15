@@ -1,5 +1,6 @@
 import React from "react";
 import styles from './MenuItem.module.css'
+import MenuTag from "@/pages/admin/MenuTag/MenuTag";
 const MenuItem = () => {
     return(
         <div className={styles.main}>
@@ -10,6 +11,11 @@ const MenuItem = () => {
                     <div className={styles.title}>Margherita</div>
                     <div className={styles.description_text}>Mozzarella, basilica, tomato pasta</div>
                     <div className={styles.description_text}>240g</div>
+                    <div className={styles.tagPanel}>
+                        <MenuTag/>
+                        <MenuTag/>
+                        <MenuTag/>
+                    </div>
                 </div>
             </div>
 

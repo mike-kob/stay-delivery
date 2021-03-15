@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./Menu.module.css"
-import MenuCategoryCard from "@/pages/admin/MenuCategoryCard/MenuCategoryCard";
+import MenuContainer from "@/pages/admin/MenuContainer/MenuContainer";
 
 const Menu = () => {
     return (
@@ -16,12 +16,8 @@ const Menu = () => {
                     Menu
                 </a>
             </div>
-            <div className={styles.add_category_button}>
-               <img src="/plus_icon.svg"/><button>Add new category</button>
-            </div>
             <div>
-                <MenuCategoryCard/>
-                <MenuCategoryCard/>
+                <MenuContainer/>
             </div>
         </div>
     )

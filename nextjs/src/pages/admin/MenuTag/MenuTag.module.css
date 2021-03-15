@@ -1,0 +1,16 @@
+.main {
+    display:inline-block;
+    padding: 10px 20px;
+    height: 38px;
+    border: 1px solid #FB9300;
+    background: #FEF1E4;
+    border-radius: 15px;
+    font-family: Montserrat;
+    font-style: normal;
+    font-size: 15px;
+    color: #FB9300;
+    font-weight: 600;
+    margin: 0 10px;
+
+}
+
