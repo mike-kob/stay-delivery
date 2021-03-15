@@ -18,6 +18,9 @@ class Client(models.Model):
     card_number = models.CharField(max_length=30, null=True, blank=True)
     photo = models.CharField(max_length=500, blank=True, null=True)
 
+    def __str__(self):
+        return f"{self.name}, email:{self.user.email}"
+
 
 class Courier(models.Model):
     phone = models.CharField(max_length=13, null=False, blank=False)

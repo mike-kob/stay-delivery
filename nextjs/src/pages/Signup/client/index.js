@@ -13,7 +13,6 @@ const ClientSignup = () => {
   const router = useRouter();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [key, setKey] = useState('signup');
 
   const onSignup = async () => {
     console.log('STARTED');
@@ -29,8 +28,8 @@ const ClientSignup = () => {
         <div className="row justify-content-center">
           <Col xs={6}>
             <div className="row justify-content-around">
-              <div className={styles.main_text}>Sign Up</div>
               <a href="/login" className={styles.muted_main_text}>Log In</a>
+              <div className={styles.main_text}>Sign Up</div>
             </div>
             <Form className={styles.form_area}>
               <Form.Group controlId="formBasicEmail">

@@ -1,3 +1,42 @@
+@import url('https://fonts.googleapis.com/css2?family=Krona+One&display=swap');
+
 .main {
-    background-color: lightgreen;
+    background-color: #F9F7FA;
+    padding: 50px 70px;
+}
+
+.mainHeader {
+    width: 575px;
+    height: 75px;
+    left: 40px;
+    top: 40px;
+
+    font-family: 'Krona One', sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 60px;
+    line-height: 75px;
+    /* identical to box height */
+
+    color: #000;
+}
+
+.card {
+    background-color: #FFFF;
+    border-radius: 40px;
+}
+
+.cardTitle {
+    font-family: 'Krona One', sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 20px;
+    line-height: 25px;
+    /* identical to box height */
+
+    text-align: right;
+
+    /* text / black */
+
+    color: #1E1F31;
 }
