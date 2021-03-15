@@ -1,5 +1,5 @@
 export const UPDATE_RESTAURANT_MUTATION = `
-    mutation(
+mutation(
   $name: String
   $description: String
   $photo: String
@@ -26,6 +26,10 @@ export const GET_RESTAURANT_QUERY = `
       name
       description
       photo
+      locations {
+        id
+        address
+      }
     }
   }
 }`;
@@ -46,7 +50,7 @@ export const GET_ORDERS_QUERY = `
             amount
         }
     }
-}`
+}`;
 
 export const GET_DISHES_QUERY = `
 query {
@@ -55,7 +59,27 @@ query {
       name
     }
   }
-}`
+}`;
 
 
+export const REMOVE_ADDRESS_MUTATION = `
+mutation($id: ID!) {
+  removeLocation (id: $id) {
+    ok
+    errors
+  }
+}
+`;
 
+export const ADD_ADDRESS_MUTATION = `
+mutation($address: String!) {
+  addLocation (address: $address) {
+    ok
+    errors
+    location {
+      id
+      address
+    }
+  }
+}
+`;
