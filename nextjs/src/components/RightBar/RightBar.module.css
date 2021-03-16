@@ -18,6 +18,9 @@
   display: flex;
   height: 10%;
   align-items: center;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 12px;
+  font-weight: 400;
 }
 
 .spaceBetween {
