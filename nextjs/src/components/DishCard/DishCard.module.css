@@ -1,0 +1,96 @@
+@import url('https://fonts.googleapis.com/css2?family=Krona+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+
+.card {
+  display: flex;
+  flex-direction: row;
+  width: calc(33.33% - 13.3px);
+  padding: 20px;
+  margin: 0 20px 20px 0;
+  background-color: #FFFF;
+  border-radius: 40px;
+}
+
+.card:hover {
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  cursor: pointer;
+}
+
+.cardImgContainer {
+  width: calc(40% - 10px);
+  max-width: 150px;
+  min-width: 80px;
+  margin: 0px 5px;
+}
+
+.cardImgContainer img {
+  width: 100%;
+  border-radius: 50%;
+}
+
+.cardTextContainer {
+  width: 60%;
+  text-align: right;
+}
+
+.cardTitle {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: bold;
+  font-size: 20px;
+  line-height: 25px;
+  color: #1E1F31;
+}
+
+.cardSecondaryText {
+  margin: 0;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 12px;
+  line-height: 15px;
+  color: #8E8F98;
+}
+
+.cardPriceTitle {
+  margin: 0;
+  margin-top: 10px;
+  font-family: 'Krona One', sans-serif;
+  font-size: 20px;
+  line-height: 25px;
+  color: #FB9300;
+}
+
+@media only screen and (min-width: 1051px) {
+  
+  .card:nth-child(3n+3) {
+    margin-right: 0;
+  }
+}
+
+@media only screen and (max-width: 1050px) {
+  .card {
+    width: calc(50% - 10px);
+  }
+  
+  .card:nth-child(2n+2) {
+    margin-right: 0;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .card {
+    width: 100%;
+    margin-right: 0;
+    padding: 30px;
+  }
+
+  .cardTextContainer {
+    width: 80%;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .card {
+    width: 100%;
+    min-width: 300px;
+    margin-right: 0;
+  }
+}
