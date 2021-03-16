@@ -1,10 +1,11 @@
 .pad {
   padding-top: 50px;
+  background-color: #F9F9F9;
 }
 
 .sideBar {
   height: 100vh;
-  background-color: #F9F9F9;
   position: fixed;
   right: 0;
+  background-color: #FFFFFF;
 }

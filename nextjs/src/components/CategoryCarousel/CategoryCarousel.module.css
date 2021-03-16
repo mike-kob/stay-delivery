@@ -1,8 +1,23 @@
-
 .category {
+  box-shadow: 0 0 1px rgba(3, 28, 33, 0.08);
+  border-radius: 40px;
+  border: none;
+  background-color: #FFFFFF;
   height: 100px;
-  width: 100px;
-  border-radius: 25px;
-  background-color: lightblue;
-  display: inline-block;
+  width: 12%;
+  font-family: 'Montserrat', sans-serif;
+  margin-left: 10px;
+}
+
+.title{
+  font-family: 'Krona One', sans-serif;
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.list{
+  display: flex;
+  flex-direction: row;
+  margin: auto;
+  font-size: 15px;
 }
