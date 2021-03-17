@@ -1,3 +1,64 @@
+@import url('https://fonts.googleapis.com/css?family=Krona+One');
+@import url('https://fonts.googleapis.com/css?family=Montserrat');
+
+
+
+
 .main {
-    background-color: lightpink;
+    padding: 10% 0;
+
+}
+
+.orng_button {
+    width: 100%;
+    background-color: #FB9300;
+    font-family: 'Krona One';
+    font-size: 18px;
+    border-radius: 40px;
+    height: 55px;
+
+
+
+}
+
+.main_text_area {
+}
+
+.form_area {
+    padding: 40px 0 0 0;
+}
+
+.main_text {
+    font-family: 'Krona One';
+    font-size: 36px;
+    color: #FB9300;
+
+}
+
+.muted_main_text {
+    color: #8E8F98;
+    font-family: 'Krona One';
+    font-size: 24px;
+    border-bottom: 3px solid #AAB0B3;
+    text-align: center;
+    height: 54px;
+    width: 33%;
+
+}
+
+.muted_main_text:hover {
+    color: darkgoldenrod;
+    text-decoration: none;
+    border-bottom: 3px solid darkgoldenrod;
+
+
+}
+
+.form_input {
+    font-family: Montserrat;
+    align-items: center;
+    padding: 20px 0px 20px 30px;
+    border: 1px solid #E3E1E6;
+    border-radius: 25px;
+    height: 60px;
 }

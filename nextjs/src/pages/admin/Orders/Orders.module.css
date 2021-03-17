@@ -1,3 +1,43 @@
+@import url('https://fonts.googleapis.com/css?family=Krona+One');
+@import url('https://fonts.googleapis.com/css?family=Montserrat');
+
+
 .main {
-    background-color: lightblue;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 60px 0px 0px;
+    background-color: #F9F7FA;
+    min-height: 100vh;
 }
+
+.selected_nav_item {
+    font-family: 'Krona One';
+    font-size: 36px;
+    width: 220px;
+    height: 45px;
+    text-align: center;
+    color: #FB9300;
+}
+
+.selected_nav_item:hover {
+    text-decoration: none;
+    color: darkgoldenrod;
+}
+.muted_nav_item {
+    font-family: 'Krona One';
+    color: #AAB0B3;
+    font-size: 24px;
+    text-align: center;
+    height: 45px;
+    width: 220px;
+    border-bottom: 3px solid #AAB0B3;
+}
+
+.muted_nav_item:hover {
+    color: #8E8F98;
+    text-decoration: none;
+
+}
+
+
