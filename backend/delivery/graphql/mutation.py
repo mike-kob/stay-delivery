@@ -3,7 +3,7 @@ from django.core.exceptions import ValidationError
 from django.utils import timezone
 
 from delivery.graphql import inputs, types
-from delivery.models import Dish, Restaurant, Order, DishOrder
+from delivery.models import Dish, Restaurant, Order, DishOrder, Location
 
 
 class CreateDishMutation(graphene.Mutation):
@@ -69,15 +69,12 @@ class UpdateRestaurantMutation(graphene.Mutation):
     errors = graphene.String(required=False)
     restaurant = graphene.Field(types.RestaurantType)
 
-    def mutate(self, info, id, data):
+    def mutate(self, info, data):
         user = info.context.user
-        if not user.is_authenticated or hasattr(user, 'restaurant'):
-            return UpdateRestaurantMutation(ok=False, errors='Not authed')
+        if not user.is_authenticated or not hasattr(user, 'restaurant'):
+            return UpdateRestaurantMutation(ok=False, errors='Ви не авторизовані')
 
-        try:
-            restaurant = Restaurant.objects.get(id=user.restaurant.id)
-        except Dish.DoesNotExist:
-            return UpdateRestaurantMutation(ok=False, errors='Not found')
+        restaurant = user.restaurant
 
         for k, v in data.items():
             if v is not None:
@@ -92,6 +89,41 @@ class UpdateRestaurantMutation(graphene.Mutation):
         return UpdateRestaurantMutation(ok=True, restaurant=restaurant)
 
 
+class AddLocationMutation(graphene.Mutation):
+    class Arguments:
+        address = graphene.String(required=True)
+
+    ok = graphene.Boolean(required=True)
+    errors = graphene.String(required=False)
+    location = graphene.Field(types.LocationType)
+
+    def mutate(self, info, address):
+        user = info.context.user
+        if not user.is_authenticated or not hasattr(user, 'restaurant'):
+            return AddLocationMutation(ok=False, errors='Ви не авторизовані')
+
+        loc = Location.objects.create(address=address, restaurant=user.restaurant)
+
+        return AddLocationMutation(ok=True, location=loc)
+
+
+class RemoveLocationMutation(graphene.Mutation):
+    class Arguments:
+        id = graphene.ID(required=True)
+
+    ok = graphene.Boolean(required=True)
+    errors = graphene.String(required=False)
+
+    def mutate(self, info, id):
+        user = info.context.user
+        if not user.is_authenticated or not hasattr(user, 'restaurant'):
+            return RemoveLocationMutation(ok=False, errors='Ви не авторизовані')
+
+        Location.objects.filter(id=id, restaurant=user.restaurant).delete()
+
+        return RemoveLocationMutation(ok=True)
+
+
 class CreateOrderMutation(graphene.Mutation):
     class Arguments:
         data = inputs.OrderInput(required=True)
@@ -102,23 +134,50 @@ class CreateOrderMutation(graphene.Mutation):
 
     def mutate(self, info, data):
         user = info.context.user
-        if not user.is_authenticated or hasattr(user, 'client'):
-            return CreateOrderMutation(ok=False, errors='Not authed')
+        if not user.is_authenticated or not hasattr(user, 'client'):
+            return CreateOrderMutation(ok=False, errors='Ви не авторизовані')
 
         order = Order.objects.create(
             notes=data['notes'],
             date=timezone.now(),
             client=user.client,
-            restaurant=data['restaurant']
+            restaurant_id=data['restaurant']
         )
         for dishOrderData in data.get('dish_orders', []):
             DishOrder.objects.create(
                 order=order,
-                dish=dishOrderData['dish'],
-                restaurant=data['restaurant']
+                dish_id=dishOrderData['dish'],
+                amount=dishOrderData['amount'],
             )
 
         return CreateOrderMutation(ok=True, order=order)
+
+
+class UpdateClientMutation(graphene.Mutation):
+    class Arguments:
+        data = inputs.ClientInput(required=True)
+
+    ok = graphene.Boolean(required=True)
+    errors = graphene.String(required=False)
+    client = graphene.Field(types.ClientType, required=False)
+
+    def mutate(self, info, data):
+        user = info.context.user
+        if not user.is_authenticated or not hasattr(user, 'client'):
+            return UpdateClientMutation(ok=False, errors='Ви не авторизовані')
+        client = user.client
+        if data.phone:
+            client.phone = data.phone
+        if data.name:
+            client.name = data.name
+        if data.card:
+            client.card_number = data.card
+        if data.address:
+            client.address = data.address
+        client.full_clean()
+        client.save()
+
+        return UpdateClientMutation(ok=True, client=client)
 
 
 class Mutation(graphene.ObjectType):
@@ -126,5 +185,9 @@ class Mutation(graphene.ObjectType):
     create_dish = CreateDishMutation.Field()
     update_dish = UpdateDishMutation.Field()
     update_restaurant = UpdateRestaurantMutation.Field()
+    update_client = UpdateClientMutation.Field()
 
     create_order = CreateOrderMutation.Field()
+
+    add_location = AddLocationMutation.Field()
+    remove_location = RemoveLocationMutation.Field()

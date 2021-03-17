@@ -14,3 +14,21 @@ a {
 * {
   box-sizing: border-box;
 }
+
+.orange, .lightOrange:hover {
+  background: #FB9300;
+  border-radius: 40px;
+  border: 1px solid #FB9300;
+  font-size: 15px;
+  color: white;
+  min-width: 40px;
+}
+
+.lightOrange, .orange:hover {
+  background: #FEF1E4;
+  border-radius: 40px;
+  border: 1px solid #FEF1E4;
+  font-size: 15px;
+  color:#FB9300;
+  min-width: 40px;
+}

@@ -1,0 +1,15 @@
+
+
+.card_style {
+    width: 410px;
+    margin: 15px 15px 15px 15px;
+    padding: 30px;
+    border-radius: 30px;
+    font-family: 'Krona One';
+    border: 0px;
+}
+
+.orders_list {
+    border-bottom: 1px solid #8E8F98;
+;
+}
