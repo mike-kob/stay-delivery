@@ -1,11 +1,11 @@
+import React from 'react';
 import styles from './DishCard.module.css';
 
-const DishCard = ({ item }) => {
-
+const DishCard = ({item}) => {
   return (
     <div className={styles.card}>
       <div className={styles.cardImgContainer}>
-        <img src={item.photo}></img>
+        <img alt="Photo" src={item.photo}/>
       </div>
       <div className={styles.cardTextContainer}>
         <h3 className={styles.cardTitle}>{item.name}</h3>
