@@ -42,7 +42,7 @@ const CategoryCarousel = ({category, setCategory}) => {
 const CategoryItem = ({category, selected, onClick}) => {
   return (
     <button className={styles.category} onClick={onClick}>
-      <div>img</div>
+      <p className={styles.categoryImg}/>
       { category.name}
       {selected && '(x)'}
     </button>
