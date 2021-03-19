@@ -12,6 +12,8 @@
     "bootstrap": "^4.6.0",
     "clsx": "^1.1.1",
     "firebase": "^8.2.7",
+    "imagekit": "^3.1.2",
+    "imagekitio-react": "^1.0.9",
     "js-cookie": "^2.2.1",
     "next": "10.0.6",
     "react": "17.0.1",

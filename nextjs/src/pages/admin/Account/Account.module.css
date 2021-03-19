@@ -90,7 +90,19 @@
     flex-shrink: 0;
     min-width: 100%;
     min-height: 100%;
-
 }
 
+.photo_row {
+  display: flex;
+  width: 200px;
+  flex-direction: column;
+}
 
+.photo_image {
+  height: 200px;
+}
+
+.photo_image img {
+  height: 100%;
+  width: 100%;
+}

@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 
 import styles from './Account.module.css';
-import {Button, Col, Form, InputGroup} from 'react-bootstrap';
+import {Button, Col, Form} from 'react-bootstrap';
 import {clientGraphql} from '@/graphql';
 import {
   UPDATE_RESTAURANT_MUTATION,
@@ -9,6 +9,7 @@ import {
   REMOVE_ADDRESS_MUTATION,
   ADD_ADDRESS_MUTATION,
 } from '@/graphql/rastaurant';
+import PhotoUploader from '@/components/PhotoUploader';
 
 const Account = () => {
   const [name, setName] = useState('');
@@ -129,12 +130,17 @@ const Account = () => {
                 >Save</Button>
               </Form.Group>
               <p style={{fontFamily: 'Krona One', fontSize: '18px'}}>Photo</p>
-
-              {photo === '' ? '' :
-                <div className={styles.form_input}>
-                  <img src={''} alt="Photo of the restaurant"/>
-                </div>
-              }
+              <div className={styles.photo_row}>
+                { photo &&
+                  <div className={styles.photo_image}>
+                    <img
+                      src={photo}
+                      alt="Photo of the restaurant"
+                    />
+                  </div>
+                }
+                <PhotoUploader setPhoto={setPhoto} />
+              </div>
             </Form>
             <Button
               type="submit" className={styles.orng_button}
