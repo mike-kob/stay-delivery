@@ -1,16 +1,23 @@
 import MenuItem from "@/pages/admin/MenuItem/MenuItem";
 import styles from "./MenuContainer.module.css"
 import {Button} from "react-bootstrap";
-const MenuContainer = () => {
+const MenuContainer = ({dishes}) => {
     return (
         <div className={styles.main}>
-            <p>Menu</p>
-            <div className={styles.items_list}>
-                <MenuItem/>
-                <MenuItem/>
-                <MenuItem/>
-            </div>
-            <Button className={styles.orng_btn}>Add new dish</Button>
+            {dishes.length === 0 ? <p>Empty menu</p> :
+                <>
+                    <p>Menu</p>
+                    <div className={styles.items_list}>
+                        {dishes.map((dish) => (
+                            <MenuItem dish={dish}/>
+
+                        ))}
+
+                    </div>
+                    <Button className={styles.orng_btn}>Add new dish</Button>
+                </>
+
+            }
         </div>
     )
 }

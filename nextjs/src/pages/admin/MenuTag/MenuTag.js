@@ -2,11 +2,12 @@ import styles from './MenuTag.module.css'
 
 
 
-const MenuTag = () => {
+const MenuTag = ({tag, canDelete = false, onDelete = function() { }}) => {
 
     return (
         <div className={styles.main}>
-            Pizza
+            {tag.name}
+            {canDelete ? <button type="button" className={styles.delete_btn} onClick={onDelete}/> : <></>}
         </div>
     )
 }

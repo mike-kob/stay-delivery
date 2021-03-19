@@ -1,0 +1,171 @@
+@import url('https://fonts.googleapis.com/css?family=Krona+One');
+@import url('https://fonts.googleapis.com/css?family=Montserrat');
+
+
+.main {
+    padding: 60px;
+    background: #F9F7FA;
+    min-height: 100vh;
+}
+
+.form_area {
+    padding: 80px 0 0 0;
+}
+.form_input {
+    font-family: Montserrat;
+    align-items: center;
+    padding: 20px 0px 20px 30px;
+    margin: 20px 0px;
+    border: 1px solid #E3E1E6;
+    border-radius: 25px;
+    font-size: 20px;
+    height: 60px;
+}
+
+.address_style {
+    font-family: Montserrat;
+    align-items: center;
+    padding: 20px 0px 20px 30px;
+    margin: 20px 0px;
+    border: 1px solid #E3E1E6;
+    border-radius: 25px;
+    font-size: 20px;
+    height: 60px;
+    margin-right: 1rem;
+}
+
+
+
+.orng_button {
+    margin: 0 15px;
+    background-color: #FB9300;
+    font-family: 'Krona One';
+    font-size: 18px;
+    border-radius: 40px;
+    height: 55px;
+    border:none;
+    width: 45%;
+
+}
+
+
+.orng_button:hover {
+    background: #D67600;
+}
+
+.orng_button_big {
+    background-color: #FB9300;
+    font-family: 'Krona One';
+    font-size: 18px;
+    height: 55px;
+    border:none;
+    width: 100%;
+    padding: 20px 0px 20px 30px;
+    margin-top: 10px;
+    margin-bottom: 30px;
+    border-radius: 25px;
+
+}
+
+
+.orng_button_big:hover {
+    background: #D67600;;
+}
+
+.cancel_btn:hover {
+    background: #FEF1E4;;
+    color: #FB9300;
+    border: 1px solid #E3E1E6;
+}
+
+.cancel_btn {
+    border: 1px solid #E3E1E6;
+    background: transparent;
+    font-family: Krona One;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    color: #FB9300;
+    height: 55px;
+    width: 45%;
+    margin: 0 15px;
+    border-radius: 40px;
+
+
+}
+
+.selected_nav_item {
+    font-family: 'Krona One';
+    font-size: 36px;
+    width: 300px;
+    height: 45px;
+    text-align: center;
+    color: #FB9300;
+    margin: 0px 20px;
+}
+
+.selected_nav_item:hover {
+    text-decoration: none;
+    color: darkgoldenrod;
+}
+.muted_nav_item {
+    font-family: 'Krona One';
+    color: #AAB0B3;
+    font-size: 24px;
+    text-align: center;
+    height: 45px;
+    width: 220px;
+    border-bottom: 3px solid #AAB0B3;
+    margin: 0px 20px;
+
+}
+
+.muted_nav_item:hover {
+    color: #8E8F98;
+    text-decoration: none;
+
+}
+
+
+.add_btn {
+    background: url('/big_plus_icon.svg');
+    border: none;
+    width: 28px;
+    height: 28px;
+    margin: 0px 10px;
+}
+
+.tags_area {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    border: 1px solid #E3E1E6;
+    border-radius: 25px;
+    background: white;
+    padding: 10px 0px 20px 30px;
+    margin-top: 20px;
+    flex-wrap: wrap;
+
+}
+
+.ingredients_area {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.form_area p {
+    font-family: 'Krona One';
+    font-size: 18px;
+    margin: 0;
+}
+
+.photo_area {
+    width: 150px;
+    height: 150px;
+    background-color: #8E8F98;
+    margin: 10px 0px;
+}
+
+

@@ -16,11 +16,51 @@
     align-items: center;
     padding: 20px 0px 20px 30px;
     margin: 20px 0px;
-    border: 0px solid #E3E1E6;
+    border: 1px solid #E3E1E6;
     border-radius: 25px;
     font-size: 20px;
     height: 60px;
 }
+
+.address_style {
+    font-family: Montserrat;
+    align-items: center;
+    padding: 20px 0px 20px 30px;
+    margin: 20px 0px;
+    border: 1px solid #E3E1E6;
+    border-radius: 25px;
+    font-size: 20px;
+    height: 60px;
+    margin-right: 1rem;
+}
+
+.delete_btn, .delete_btn:hover, .delete_btn {
+    border: none;
+    background: url("/delete_icon.svg") no-repeat scroll 0 0 transparent;
+    width: 24px;
+    height: 24px;
+}
+
+
+
+.add_btn, .add_btn:hover {
+    border: none;
+    background: transparent;
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 24px;
+    text-align: right;
+    color: #1E1F31;
+    text-decoration-line: underline;
+    padding: 0;
+}
+
+
+
+
+
+
 
 .form_input_btn {
     font-family: Montserrat;
@@ -45,7 +85,7 @@
 
 }
 .orng_button:hover {
-    background-color: darkgoldenrod;
+    background: #D67600;
 }
 
 .selected_nav_item {
@@ -60,7 +100,7 @@
 
 .selected_nav_item:hover {
     text-decoration: none;
-    color: darkgoldenrod;
+    color: #D67600;
 }
 .muted_nav_item {
     font-family: 'Krona One';

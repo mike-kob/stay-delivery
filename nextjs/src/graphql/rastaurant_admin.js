@@ -23,6 +23,7 @@ export const GET_RESTAURANT_QUERY = `
  query {
   me {
     restaurant {
+      id
       name
       description
       photo
@@ -54,9 +55,21 @@ export const GET_ORDERS_QUERY = `
 
 export const GET_DISHES_QUERY = `
 query {
-  restaurant(id: $id) {
-    dishes {
+  me {
+    restaurant {
+      dishes {
+      id
       name
+      description
+      weight
+        price
+        photo
+        tags {
+          id
+          name
+        }
+    }
+      
     }
   }
 }`;

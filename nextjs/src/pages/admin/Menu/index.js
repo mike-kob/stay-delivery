@@ -1,8 +1,21 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import styles from "./Menu.module.css"
 import MenuContainer from "@/pages/admin/MenuContainer/MenuContainer";
+import {clientGraphql} from "@/graphql";
+import {GET_DISHES_QUERY, GET_RESTAURANT_QUERY} from "@/graphql/rastaurant_admin";
 
 const Menu = () => {
+    const [dishes, setDishes] = useState([]);
+
+
+
+    useEffect(() => {
+        (async function() {
+            const {data} = await clientGraphql(GET_DISHES_QUERY);
+            setDishes(data.me.restaurant.dishes);
+
+        })();
+    }, []);
     return (
         <div className={styles.main}>
             <div className={styles.nav_menu}>
@@ -17,7 +30,7 @@ const Menu = () => {
                 </a>
             </div>
             <div>
-                <MenuContainer/>
+                <MenuContainer dishes={dishes}/>
             </div>
         </div>
     )

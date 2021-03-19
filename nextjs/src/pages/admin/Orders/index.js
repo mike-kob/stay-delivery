@@ -4,7 +4,7 @@ import styles from './Orders.module.css';
 
 import OrdersContainer from '@/pages/admin/OrdersContainer';
 import {clientGraphql} from '@/graphql';
-import {GET_ORDERS_QUERY} from '@/graphql/rastaurant';
+import {GET_ORDERS_QUERY} from '@/graphql/rastaurant_admin';
 
 const Orders = () => {
   const [orders, setOrders] = useState([]);
