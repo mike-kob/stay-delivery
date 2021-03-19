@@ -80,6 +80,28 @@
     width: 100%;
 }
 
+.dishesGrid > div {
+    width: calc(33.33% - 13.3px);
+    margin: 0 20px 20px 0;
+}
+
+@media only screen and (min-width: 1051px) {
+  
+    .dishesGrid > div:nth-child(3n+3) {
+      margin-right: 0;
+    }
+}
+
+@media only screen and (max-width: 1050px) {
+    .dishesGrid > div {
+      width: calc(50% - 10px);
+    }
+    
+    .dishesGrid > div:nth-child(2n+2) {
+      margin-right: 0;
+    }
+}
+
 @media only screen and (max-width: 768px) {
     .restaurantInfo {
         margin-bottom: 20px;
@@ -101,5 +123,23 @@
 
     .hidden .location::before {
         background-image: url('../../../public/OrangeLocation.svg');
+    }
+
+    .dishesGrid > div {
+        width: 100%;
+        margin-right: 0;
+        padding: 30px;
+      }
+    
+      .dishesGrid > div > div:last-of-type {
+        width: 80%;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .dishesGrid > div {
+      width: 100%;
+      min-width: 300px;
+      margin-right: 0;
     }
 }

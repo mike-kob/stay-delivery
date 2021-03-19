@@ -4,9 +4,7 @@
 .card {
   display: flex;
   flex-direction: row;
-  width: calc(33.33% - 13.3px);
   padding: 20px;
-  margin: 0 20px 20px 0;
   background-color: #FFFF;
   border-radius: 40px;
 }
@@ -56,41 +54,4 @@
   font-size: 20px;
   line-height: 25px;
   color: #FB9300;
-}
-
-@media only screen and (min-width: 1051px) {
-  
-  .card:nth-child(3n+3) {
-    margin-right: 0;
-  }
-}
-
-@media only screen and (max-width: 1050px) {
-  .card {
-    width: calc(50% - 10px);
-  }
-  
-  .card:nth-child(2n+2) {
-    margin-right: 0;
-  }
-}
-
-@media only screen and (max-width: 768px) {
-  .card {
-    width: 100%;
-    margin-right: 0;
-    padding: 30px;
-  }
-
-  .cardTextContainer {
-    width: 80%;
-  }
-}
-
-@media only screen and (max-width: 600px) {
-  .card {
-    width: 100%;
-    min-width: 300px;
-    margin-right: 0;
-  }
 }

@@ -60,7 +60,8 @@ const OrderForm = ({client, redirectToProfile}) => {
                 handleRemove={handleRemove}
                 handleChange={handleChange} />
             )) :
-            <div>You haven’t picked up anything yet.</div>
+                // eslint-disable-next-line max-len
+            <div className={styles.emptyCart}>You haven’t picked up anything yet.</div>
           }
         </div>
       </div>
@@ -80,7 +81,8 @@ const OrderForm = ({client, redirectToProfile}) => {
         }
 
         <div className={`${styles.header} mt-5`}>
-          Total: {items.reduce((acc, el) => acc + el.price * el.quantity, 0)}₴
+          {/* eslint-disable-next-line max-len */}
+          <span>Total:</span><span className={styles.highlightSum}> {items.reduce((acc, el) => acc + el.price * el.quantity, 0)} UAH</span>
         </div>
         <button
           className={`orange mt-2 ${styles.orderBtn}`}
