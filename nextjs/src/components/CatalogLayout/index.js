@@ -8,7 +8,7 @@ const CatalogLayout = ({ children }) => {
   return (
     <div className="container-fluid">
       <div className="row">
-        <div className={`col-9 ${styles.pad}`}>
+        <div className={`col-9 ${styles.pad} ${styles.maincolor}`}>
           <Header />
           <div>
             { children }

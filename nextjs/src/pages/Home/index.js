@@ -19,10 +19,6 @@ const Home = () => {
 
   return (
     <CatalogLayout>
-      <div>
-         Stay with your family.
-        Don’t spend time going to market.
-      </div>
       <CategoryCarousel category={category} setCategory={setCategory} />
       <ItemsGrid items={items} />
     </CatalogLayout>

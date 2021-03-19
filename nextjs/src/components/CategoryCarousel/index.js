@@ -16,23 +16,25 @@ const CategoryCarousel = ({category, setCategory}) => {
 
   return (
     <>
-      <div>
+      <div className={styles.title}>
         Choose category
       </div>
-      <CategoryItem
-        selected={category===null}
-        category={{name: 'All'}}
-        onClick={() => setCategory(null)}
-      />
-      {
-        categories.map((cat) => (
-          <CategoryItem
-            selected={category?.id === cat.id}
-            key={cat.id}
-            category={cat}
-            onClick={() => setCategory(cat)}
-          />))
-      }
+      <div className={styles.list}>
+        <CategoryItem
+          selected={category===null}
+          category={{name: 'All'}}
+          onClick={() => setCategory(null)}
+        />
+        {
+          categories.map((cat) => (
+            <CategoryItem
+              selected={category?.id === cat.id}
+              key={cat.id}
+              category={cat}
+              onClick={() => setCategory(cat)}
+            />))
+        }
+      </div>
     </>
   );
 };
@@ -40,6 +42,7 @@ const CategoryCarousel = ({category, setCategory}) => {
 const CategoryItem = ({category, selected, onClick}) => {
   return (
     <button className={styles.category} onClick={onClick}>
+      <p className={styles.categoryImg}/>
       { category.name}
       {selected && '(x)'}
     </button>

@@ -1,0 +1,21 @@
+.title{
+    font-family: 'Krona One', sans-serif;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.dishesGrid {
+    display: flex;
+    flex-flow: row wrap;
+    width: 100%;
+}
+
+.dishesGrid > div {
+    width: 30%;
+        min-width: 240px;
+    margin: 0 20px 20px 0;
+}
+
+.dishesGrid > div:hover {
+    background-color: #fed8b1;
+}
