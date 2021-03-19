@@ -1,0 +1,25 @@
+.main {
+    display:inline-block;
+    align-items: center;
+    padding: 10px 20px 30px 20px;
+    height: 38px;
+    border: 1px solid #FB9300;
+    background: #FEF1E4;
+    border-radius: 15px;
+    font-family: Montserrat;
+    font-style: normal;
+    font-size: 15px;
+    color: #FB9300;
+    font-weight: 600;
+    margin: 10px 10px 0 0;
+
+}
+
+.delete_btn {
+    background: url("/orange_delete.svg") transparent;
+    width: 18px;
+    height: 18px;
+    border: none;
+    margin-left: 5px;
+}
+

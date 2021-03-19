@@ -19,7 +19,7 @@ const OrdersCard = ({order}) => {
         <Card className={styles.card_style}>
             <Card.Body>
                 <Card.Title>Order #{order.id}</Card.Title>
-                <Card.Subtitle className="mb-2 text-muted">from {order.client.name}</Card.Subtitle>
+                <Card.Subtitle className="mb-2 text-muted">from {order.client.name},{order.client.phone}</Card.Subtitle>
                 <ListGroup className={styles.orders_list}>
                     {order.orderInDishorder.map((o) => (
                         <OrderItem orderItem={o}/>

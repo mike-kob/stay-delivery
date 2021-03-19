@@ -8,7 +8,8 @@ import {
   GET_RESTAURANT_QUERY,
   REMOVE_ADDRESS_MUTATION,
   ADD_ADDRESS_MUTATION,
-} from '@/graphql/rastaurant';
+} from '@/graphql/rastaurant_admin';
+
 import PhotoUploader from '@/components/PhotoUploader';
 
 const Account = () => {
@@ -18,6 +19,7 @@ const Account = () => {
   const [photo, setPhoto] = useState('');
   const [locations, setLocations] = useState([]);
   const [inactive, setIncative] = useState(false);
+
 
   const onSubmit = () => {
     (async function() {
@@ -98,40 +100,59 @@ const Account = () => {
                 />
 
               </Form.Group>
+              <p style={{fontFamily: 'Krona One', fontSize: '18px'}}>
+                Addresses</p>
               <Form.Group controlId="formBasicAddress">
                 {locations.map((loc) => (
-                  <React.Fragment key={loc.id}>
-                    <Form.Control
-                      value={loc.address}
-                      readOnly
-                      type="text"
-                      placeholder="Address"
-                      className={styles.form_input}
-                    />
-                    <Button
-                      disabled={inactive}
-                      onClick={() => onDelete(loc.id)}>
-                      x
-                    </Button>
+                  <React.Fragment key={loc.id} >
+                    <div style={{
+                      display: 'flex',
+                      flexDirection: 'row',
+                      alignItems: 'center',
+                    }}>
+                      <Form.Control
+                        value={loc.address}
+                        readOnly
+                        type="text"
+                        placeholder="Address"
+                        className={styles.address_style}
+                      />
+                      <Button
+                        disabled={inactive}
+                        onClick={() => onDelete(loc.id)}
+                        className={styles.delete_btn} />
+
+                    </div>
+
                   </React.Fragment>
+
                 ))}
               </Form.Group>
               <Form.Group controlId="formBasicAddress">
-                <Form.Control
-                  value={address}
-                  onChange={(e) => setAddress(e.target.value)}
-                  type="text"
-                  placeholder="Address"
-                  className={styles.form_input}
-                />
-                <Button
-                  disabled={inactive}
-                  onClick={() => addAddress()}
-                >Save</Button>
+                <div
+                  style={{
+                    display: 'flex',
+                    flexDirection: 'row',
+                    alignItems: 'center',
+                  }}>
+                  <Form.Control
+                    value={address}
+                    onChange={(e) => setAddress(e.target.value)}
+                    type="text"
+                    placeholder="Add new address"
+                    className={styles.address_style}
+                  />
+                  <Button
+                    disabled={inactive}
+                    onClick={() => addAddress()}
+                    className={styles.add_btn}
+                  >Add</Button>
+                </div>
+
               </Form.Group>
               <p style={{fontFamily: 'Krona One', fontSize: '18px'}}>Photo</p>
               <div className={styles.photo_row}>
-                { photo &&
+                {photo &&
                   <div className={styles.photo_image}>
                     <img
                       src={photo}
@@ -141,12 +162,13 @@ const Account = () => {
                 }
                 <PhotoUploader setPhoto={setPhoto} />
               </div>
+
             </Form>
             <Button
               type="submit" className={styles.orng_button}
               onClick={onSubmit}
             >
-              Update data
+              Update information
             </Button>
 
           </Col>

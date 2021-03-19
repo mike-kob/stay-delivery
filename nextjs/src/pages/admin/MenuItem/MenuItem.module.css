@@ -1,14 +1,15 @@
 .main {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: space-between;
     align-items: center;
     padding: 16px;
-    width: 600px;
-    height: 100px;
+    width: 750px;
     border-radius: 20px;
     background: #FFFFFF;
     margin: 10px 0;
+    flex-wrap: nowrap;
+
 }
 
 .main button {
@@ -24,11 +25,14 @@
 .menu_item {
     display: flex;
     flex-direction: row;
+    width: 60%;
 }
 
 .menu_item img {
-    height: 70px;
-    width: 70px;
+    max-height: 70px;
+    max-width: 70px;
+    min-height: 70px;
+    min-width: 70px;
 }
 
 .description_area {
@@ -59,13 +63,29 @@
     font-style: normal;
     font-weight: normal;
     font-size: 20px;
-    line-height: 25px;
     color: #FB9300;
     margin: 0 1rem;
 
 }
 
 .instrument_area {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.tagPanel {
+    display: flex;
+    flex-direction: row;
+    margin: 0px 0px 0px 170px;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    width: 100%;
+
+
+}
+
+.dishPanel {
     display: flex;
     flex-direction: row;
 }
