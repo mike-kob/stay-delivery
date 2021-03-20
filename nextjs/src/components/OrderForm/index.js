@@ -1,18 +1,13 @@
-import React, {useState, useEffect} from 'react';
+import React, {useContext} from 'react';
 
 import styles from './OrderForm.module.css';
 import OrderItem from '../OrderItem';
-import {setCart, getCart} from '../../utils/cart';
 import {clientGraphql} from '@/graphql';
 import {CREATE_ORDER_MUTATION} from '@/graphql/order';
+import ItemsContext from '../ItemsContext/ItemsContext';
 
 const OrderForm = ({client, redirectToProfile}) => {
-  const [items, setItems] = useState([]);
-
-  useEffect(() => {
-    setItems(getCart());
-  }, []);
-
+  const {items, saveItems} = useContext(ItemsContext);
   const submit = () => {
     (async function() {
       const value = {
@@ -37,14 +32,12 @@ const OrderForm = ({client, redirectToProfile}) => {
     const newItems = items.map((item) => item.id !== id ? item :
       {...item, quantity: newQuantity});
 
-    setItems(newItems);
-    setCart(newItems);
+    saveItems(newItems);
   };
 
   const handleRemove = (id) => {
     const newItems = items.filter((item) => item.id !== id);
-    setItems(newItems);
-    setCart(newItems);
+    saveItems(newItems);
   };
 
   return (

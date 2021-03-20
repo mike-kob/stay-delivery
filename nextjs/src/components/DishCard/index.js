@@ -1,9 +1,29 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import styles from './DishCard.module.css';
+import ItemsContext from '../ItemsContext/ItemsContext';
 
 const DishCard = ({item}) => {
+  const {items, saveItems} = useContext(ItemsContext);
+  const handleClick = () => {
+    const restaurant = item.restaurant.id;
+
+    if (items.length && items[0].restaurant !== restaurant) {
+      alert('You can\'t order dishes from different restaurants!');
+      return;
+    }
+
+    saveItems([...items, {
+      quantity: 1,
+      image: item.photo,
+      name: item.name,
+      price: item.price,
+      id: item.id,
+      restaurant,
+    }]);
+  };
+
   return (
-    <div className={styles.card}>
+    <div className={styles.card} onClick={handleClick}>
       <div className={styles.cardImgContainer}>
         <img alt="Photo" src={item.photo}/>
       </div>
