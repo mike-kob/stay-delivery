@@ -109,6 +109,7 @@ query ($tag: ID) {
     id
     name
     price
+    weight
     photo
     restaurant {
       id
