@@ -11,6 +11,9 @@ query($id: Int!) {
       }
       dishes {
         id
+        restaurant {
+          id
+        }
         name
         description
         weight
