@@ -4,6 +4,15 @@
     margin-bottom: 20px;
 }
 
+.subtitle{
+    font-family: 'Krona One', sans-serif;
+    font-size: 16px;
+    margin-bottom: 20px;
+    text-decoration: underline;
+    color: #FB9300;
+    cursor: pointer;
+}
+
 .dishesGrid {
     display: flex;
     flex-flow: row wrap;

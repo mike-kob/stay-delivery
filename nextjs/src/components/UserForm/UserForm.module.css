@@ -14,3 +14,9 @@
     font-size: 15px;
     min-width: 40px;
 }
+
+.form {
+    display: flex;
+    flex-direction: column;
+    height: 95%;
+}

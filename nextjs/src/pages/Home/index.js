@@ -20,6 +20,7 @@ const Home = () => {
   return (
     <CatalogLayout>
       <CategoryCarousel category={category} setCategory={setCategory} />
+      <div className="m-5"/>
       <ItemsGrid items={items} />
     </CatalogLayout>
   );

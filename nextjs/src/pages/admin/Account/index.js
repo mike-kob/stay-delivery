@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react';
+import Cookies from 'js-cookie';
 
 import styles from './Account.module.css';
 import {Button, Col, Form} from 'react-bootstrap';
@@ -169,6 +170,16 @@ const Account = () => {
               onClick={onSubmit}
             >
               Update information
+            </Button>
+            <div className="m-5"/>
+            <Button
+              className={styles.orng_button}
+              onClick={() => {
+                Cookies.remove('fb_session');
+                window.location.href = '/';
+              }}
+            >
+              Logout
             </Button>
 
           </Col>
