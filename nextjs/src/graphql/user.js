@@ -20,12 +20,14 @@ export const UPDATE_USER_MUTATION = `
 mutation (
   $phone: String
   $card: String
+  $name: String
   $address: String
 ) {
   updateClient (data: {
     phone: $phone
     card: $card
     address: $address
+    name: $name
   }) {
     client {
       id

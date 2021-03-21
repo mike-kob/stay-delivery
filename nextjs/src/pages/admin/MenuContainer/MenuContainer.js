@@ -1,25 +1,34 @@
-import MenuItem from "@/pages/admin/MenuItem/MenuItem";
-import styles from "./MenuContainer.module.css"
-import {Button} from "react-bootstrap";
-const MenuContainer = ({dishes}) => {
-    return (
-        <div className={styles.main}>
-            {dishes.length === 0 ? <p>Empty menu</p> :
-                <>
-                    <p>Menu</p>
-                    <div className={styles.items_list}>
-                        {dishes.map((dish) => (
-                            <MenuItem dish={dish}/>
+import React from 'react';
+import {useRouter} from 'next/router';
 
-                        ))}
+import MenuItem from '@/pages/admin/MenuItem/MenuItem';
+import styles from './MenuContainer.module.css';
+import {Button} from 'react-bootstrap';
 
-                    </div>
-                    <Button className={styles.orng_btn}>Add new dish</Button>
-                </>
+const MenuContainer = ({dishes, setDishes}) => {
+  const router = useRouter();
 
-            }
-        </div>
-    )
-}
+  return (
+    <div className={styles.main}>
+      {dishes.length === 0 ? <p>Empty menu</p> :
+        <>
+          <div className={styles.items_list}>
+            {dishes.map((dish) => (
+              <MenuItem
+                key={dish.id}
+                dish={dish}
+                dishes={dishes}
+                setDishes={setDishes}
+              />
+            ))}
+          </div>
+          <Button
+            onClick={() => router.push('/admin/add')}
+            className={styles.orng_btn}>Add new dish</Button>
+        </>
+      }
+    </div>
+  );
+};
 
 export default MenuContainer;

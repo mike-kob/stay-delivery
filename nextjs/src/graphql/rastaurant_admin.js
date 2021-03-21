@@ -74,6 +74,22 @@ query {
   }
 }`;
 
+export const GET_DISH_QUERY = `
+query($id: Int!) {
+  dish(id:$id) {
+    id
+    name
+    description
+    weight
+    price
+    photo
+    tags {
+      id
+      name
+    }
+  }
+}
+`;
 
 export const REMOVE_ADDRESS_MUTATION = `
 mutation($id: ID!) {

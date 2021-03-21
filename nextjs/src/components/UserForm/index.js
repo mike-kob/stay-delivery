@@ -24,9 +24,9 @@ const UserForm = ({close, client, updateClient}) => {
       <FormInput className={styles.input} name="Street, house"
         value={client?.address}
         update={(address) => updateClient({address: address})} />
-      <FormInput className={styles.input} name="Card: 0000-0000-0000-0000"
-        value={client?.cardNumber}
-        update={(card) => updateClient({card: card})} />
+      {/* <FormInput className={styles.input} name="Card: 0000-0000-0000-0000"*/}
+      {/*  value={client?.cardNumber}*/}
+      {/*  update={(card) => updateClient({card: card})} />*/}
     </div>
   );
 };

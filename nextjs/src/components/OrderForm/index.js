@@ -15,12 +15,13 @@ const OrderForm = ({client, redirectToProfile}) => {
         dishOrders: items.map((el) => ({
           dish: el.id,
           amount: el.quantity,
-        }),
-        ),
+        })),
       };
 
       const {data} = await clientGraphql(CREATE_ORDER_MUTATION, value);
-      console.log(data);
+      alert(`Ваше замовлення #${data.createOrder.order.id} прийнято.
+       Очікуйте дзвінка.`);
+      saveItems([]);
     })();
   };
 
@@ -51,37 +52,41 @@ const OrderForm = ({client, redirectToProfile}) => {
                 key={item.id}
                 item={item}
                 handleRemove={handleRemove}
-                handleChange={handleChange} />
+                handleChange={handleChange}/>
             )) :
-                // eslint-disable-next-line max-len
-            <div className={styles.emptyCart}>You haven’t picked up anything yet.</div>
+              // eslint-disable-next-line max-len
+              <div className={styles.emptyCart}>You haven’t picked up anything
+                yet.</div>
           }
         </div>
       </div>
 
       <div className={styles.orderInfo}>
         {
-          client && <>
-            <div className={styles.header}>Payment</div>
-            <div className={styles.payment}>
-              <div>... {client.cardNumber.substr(-4)}</div>
-              <button
-                className='lightOrange'
-                onClick={() => redirectToProfile()}
-              >Edit</button>
-            </div>
-          </>
+          // client && <>
+          //   <div className={styles.header}>Payment</div>
+          //   <div className={styles.payment}>
+          //      <div>... {client.cardNumber.substr(-4)}</div>
+          //     <button
+          //       className='lightOrange'
+          //       onClick={() => redirectToProfile()}
+          //     >Edit</button>
+          //   </div>
+          // </>
         }
 
         <div className={`${styles.header} mt-5`}>
           {/* eslint-disable-next-line max-len */}
-          <span>Total:</span><span className={styles.highlightSum}> {items.reduce((acc, el) => acc + el.price * el.quantity, 0)} UAH</span>
+          <span>Total:</span><span
+            className={styles.highlightSum}> {items.reduce(
+                (acc, el) => acc + el.price * el.quantity, 0)} UAH</span>
         </div>
         <button
           className={`orange mt-2 ${styles.orderBtn}`}
           onClick={() => submit()}
           disabled={!items.length || !client?.address || !client?.phone}
-        >Order</button>
+        >Order
+        </button>
       </div>
     </div>
   );
