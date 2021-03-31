@@ -13,6 +13,15 @@ class ClientAdmin(admin.ModelAdmin):
     )
     list_select_related = ('user',)
 
+    actions = (
+        'block_client',
+    )
+
+    def block_client(self, request, queryset):
+        pass
+
+    block_client.short_description = 'Block client'
+
     def user_email(self, obj):
         return obj.user.email
 
@@ -64,6 +73,14 @@ class RestaurantAdmin(admin.ModelAdmin):
     list_select_related = ('administrator',)
     readonly_fields = ('administrator',)
     inlines = (LocationInline, DishInline,)
+    actions = (
+        'block_restaurant',
+    )
+
+    def block_restaurant(self, request, queryset):
+        pass
+
+    block_restaurant.short_description = 'Block restaurant'
 
     def admin_email(self, obj):
         return obj.administrator.email
