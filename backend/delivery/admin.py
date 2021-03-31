@@ -100,10 +100,6 @@ class TagAdmin(admin.ModelAdmin):
     )
 
 
-class CourierAdmin(admin.ModelAdmin):
-    pass
-
-
 class OrderAdmin(admin.ModelAdmin):
     list_filter = ('date',)
 
@@ -120,4 +116,3 @@ admin.site.register(Tag, TagAdmin)
 admin.site.register(Client, ClientAdmin)
 admin.site.register(Restaurant, RestaurantAdmin)
 admin.site.register(Order, OrderAdmin)
-admin.site.register(Courier, CourierAdmin)
