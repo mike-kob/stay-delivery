@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react';
+import clsx from 'clsx';
 
 import {clientGraphql} from '@/graphql';
 import styles from './CategoryCarousel.module.css';
@@ -21,7 +22,7 @@ const CategoryCarousel = ({category, setCategory}) => {
       </div>
       <div className={styles.list}>
         <CategoryItem
-          selected={category===null}
+          selected={category === null}
           category={{name: 'All'}}
           onClick={() => setCategory(null)}
         />
@@ -41,10 +42,10 @@ const CategoryCarousel = ({category, setCategory}) => {
 
 const CategoryItem = ({category, selected, onClick}) => {
   return (
-    <button className={styles.category} onClick={onClick}>
-      <p className={styles.categoryImg}/>
-      { category.name}
-      {selected && '(x)'}
+    <button
+      className={clsx(styles.category, selected && styles.category_selected)}
+      onClick={onClick}>
+      {category.name}
     </button>
   );
 };
